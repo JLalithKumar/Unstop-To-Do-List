@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow Pro - Ultimate Task Manager</title>
+    <meta name="description" content="The most advanced and beautiful task manager for maximum productivity">
+    <meta name="keywords" content="todo, task manager, productivity, planning, organization">
+    
+    <!-- PWA Support -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="TaskFlow Pro">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    
+    <!-- External Resources -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">🚀</div>
+        <div class="loading-text">TaskFlow Pro</div>
+        <div class="loading-progress">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- Dynamic Background Particles -->
+    <div id="particles-container"></div>
+    
+    <!-- Enhanced Background Elements -->
+    <div class="bg-decoration circle-1"></div>
+    <div class="bg-decoration circle-2"></div>
+    <div class="bg-decoration triangle"></div>
+    <div class="bg-decoration square"></div>
+
+    <!-- Enhanced Control Buttons -->
+    <div class="control-buttons">
+        <div class="control-btn" id="soundToggle" title="Toggle Sound Effects">
+            <i class="fas fa-volume-up"></i>
+        </div>
+        <div class="control-btn" id="themeToggle" title="Toggle Dark/Light Theme">
+            <i class="fas fa-moon"></i>
+        </div>
+        <div class="control-btn" id="settingsToggle" title="Settings">
+            <i class="fas fa-cog"></i>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Enhanced Header -->
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>TaskFlow <span class="pro-badge">PRO</span></h1>
+                    <p>Master your productivity with extraordinary style</p>
+                </div>
+            </div>
+            <div class="time-display" id="timeDisplay">Loading...</div>
+        </div>
+
+        <!-- Enhanced Achievement Bar -->
+        <div class="achievement-bar">
+            <div class="achievement-progress">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="achievement-text">
+                <span class="achievement-icon" id="achievementIcon">🚀</span>
+                <span id="achievementText">Ready to conquer your tasks!</span>
+            </div>
+        </div>
+
+        <!-- Enhanced Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card" data-stat="total">
+                <div class="stat-icon">
+                    <i class="fas fa-list-check"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number" id="totalTasks">0</span>
+                    <div class="stat-label">Total Tasks</div>
+                </div>
+            </div>
+            <div class="stat-card" data-stat="completed">
+                <div class="stat-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number" id="completedTasks">0</span>
+                    <div class="stat-label">Completed</div>
+                </div>
+            </div>
+            <div class="stat-card" data-stat="pending">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number" id="pendingTasks">0</span>
+                    <div class="stat-label">Pending</div>
+                </div>
+            </div>
+            <div class="stat-card" data-stat="streak">
+                <div class="stat-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number" id="streakCount">0</span>
+                    <div class="stat-label">Day Streak</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main App Container -->
+        <div class="app-container">
+            <!-- Enhanced Input Section -->
+            <div class="input-section">
+                <div class="input-container">
+                    <div class="input-wrapper">
+                        <i class="fas fa-plus input-icon"></i>
+                        <input type="text" class="task-input" id="taskInput" placeholder="What amazing thing will you accomplish today?" maxlength="200" autocomplete="off">
+                    </div>
+                    <div class="priority-selector">
+                        <button class="priority-btn" data-priority="low" title="Low Priority">
+                            <i class="fas fa-circle"></i>
+                        </button>
+                        <button class="priority-btn" data-priority="medium" title="Medium Priority">
+                            <i class="fas fa-circle"></i>
+                        </button>
+                        <button class="priority-btn active" data-priority="high" title="High Priority">
+                            <i class="fas fa-circle"></i>
+                        </button>
+                    </div>
+                    <button class="add-btn" id="addBtn">
+                        <span class="btn-text">Add Task</span>
+                        <span class="btn-icon"><i class="fas fa-plus"></i></span>
+                    </button>
+                </div>
+                
+                <!-- Enhanced Quick Actions -->
+                <div class="quick-actions">
+                    <button class="quick-btn" data-task="Check emails and respond">
+                        <i class="fas fa-envelope"></i> Check emails
+                    </button>
+                    <button class="quick-btn" data-task="30-minute workout session">
+                        <i class="fas fa-dumbbell"></i> Workout
+                    </button>
+                    <button class="quick-btn" data-task="Read for 30 minutes">
+                        <i class="fas fa-book"></i> Read
+                    </button>
+                    <button class="quick-btn" data-task="Plan tomorrow's schedule">
+                        <i class="fas fa-calendar"></i> Plan
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tasks Container -->
+            <div class="tasks-wrapper">
+                <div class="tasks-container" id="tasksContainer">
+                    <div class="empty-state" id="emptyState">
+                        <div class="empty-animation">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Ready for liftoff!</h3>
+                        <p>Add your first task and start your extraordinary productivity journey</p>
+                        <div class="empty-tips">
+                            <div class="tip">
+                                <i class="fas fa-keyboard"></i>
+                                <span>Press Enter to quickly add a task</span>
+                            </div>
+                            <div class="tip">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Use priority levels to organize your tasks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Toast Notifications Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+     <script src="script.js"></script>
+</body>
+</html>
+
